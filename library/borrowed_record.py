@@ -6,6 +6,9 @@ from personal_library.book import Book
 from personal_library.member import Member
 
 
+logger = logging.getLogger("personalLibrary")
+
+
 class BorrowedRecord:
     def __init__(self, book: Book, member: Member, issued_on: date, due_date: date, **kwargs) -> None:
         self.book = book

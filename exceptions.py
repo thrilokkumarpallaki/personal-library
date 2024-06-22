@@ -22,3 +22,8 @@ class InvalidSearchType(Exception):
 class DuplicateBorrowRecord(Exception):
     def __init__(self, *args: object) -> None:
         super().__init__(*args)
+
+
+class BookBorrowedAlready(Exception):
+    def __init__(self, *args: object) -> None:
+        super().__init__(*args)

@@ -16,6 +16,7 @@ setup_logging()
 
 from library_system import LibrarySystem
 from personal_library.member.user import Member
+from personal_library.exceptions import BookBorrowedAlready
 
 logger = logging.getLogger("PersonalLibrary")
 
@@ -27,14 +28,19 @@ if __name__ == '__main__':
 
     thrilok = lms.create_member(name="thrilok")
     book_name = "Rich Dad Poor Dad"
-
-    book = thrilok.borrow_book(book_name)
-    if book:
+    book = lms.search_book(book_name)
+    borrowed_book = lms.borrow_book(thrilok, book)
+    if borrowed_book:
         print("I borrowed a book")
     else:
         print(f"No book found with the name: {book_name}")
 
-    print("Iterate all the books in the library")
+
+    try:
+        lms.return_book(thrilok, borrowed_book)
+    except BookBorrowedAlready as e:
+        print("Book already borrowed by you.")
+    
     
 
 
