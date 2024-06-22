@@ -78,8 +78,15 @@ class LibrarySystem(metaclass=LibrarySystemMeta):
         if member is None or book is None:
             raise ValueError("Member/Book cannot be empty")
         
-        if book := self.__library.borrow_book(book):
+        if book := self.__library.borrow_book(member, book):
             return book
         else:
             return None
+        
+    def return_book(self, member: Member, book: Book):
+        if member is None or book is None:
+            raise ValueError("Member/Book cannot be empty")
+        
+        if status := self.__library.return_book(member, book):
+            return status
         
