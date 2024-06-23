@@ -112,9 +112,9 @@ class BorrowedBooks(metaclass=BorrowedBooksMeta):
             # Borrowing period for a book.
             td = timedelta(days=Constants.BORROW_PERIOD_IN_DAYS)
 
-            if record.due_date + td > date.today():
-                total_days = (record.due_date + td - date.today()).days
-                total_fine += (total_days * Constants.FINE_AMOUNT_PER_DAY)
+            if date.today() > record.due_date:
+                overdue_days = (date.today() - record.due_date).days
+                total_fine += (overdue_days * Constants.FINE_AMOUNT_PER_DAY)
         return total_fine
 
     def report_overdues(self) -> list[BorrowedRecord]:
