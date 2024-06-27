@@ -90,3 +90,6 @@ class LibrarySystem(metaclass=LibrarySystemMeta):
         if status := self.__library.return_book(member, book):
             return status
         
+    def renew_book(self, member: Member, book_name: str):
+        return self.__library.renew_book(member, book_name)
+        

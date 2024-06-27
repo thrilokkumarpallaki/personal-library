@@ -15,6 +15,7 @@ class BorrowedRecord:
         self.member = member
         self.issued_on = issued_on
         self.due_date = due_date
+        self.last_renewal_date = None
         self.extas = kwargs
 
     def __str__(self) -> str:
